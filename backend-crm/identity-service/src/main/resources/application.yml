@@ -1,0 +1,31 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: identity-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/identity_db
+    username: crm_admin
+    password: crm_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+
+jwt:
+  secret: YTVmMmM2MzZkMTc4ZWI2NmUwOTlmZTllNjcxMThjZGExNzNmYmRlZTk5MDMzY2ZmNGVjMmQzZDRhOGIxY2U0Yg==
+  expiration: 86400000 # 24 hours
+
+logging:
+  level:
+    org.springframework.security: DEBUG

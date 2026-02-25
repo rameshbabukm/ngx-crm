@@ -1,0 +1,47 @@
+scalar UUID
+
+type User {
+    id: UUID!
+    email: String!
+    firstName: String
+    lastName: String
+    isActive: Boolean!
+    roles: [Role!]!
+}
+
+type Role {
+    id: UUID!
+    name: String!
+    permissions: String
+    fieldPermissions: [RoleFieldPermission!]
+}
+
+type RoleFieldPermission {
+    id: UUID
+    roleId: UUID!
+    module: String!
+    fieldName: String!
+    canRead: Boolean!
+    canWrite: Boolean!
+}
+
+type AuthResponse {
+    token: String!
+    user: User!
+}
+
+type Query {
+    getUserById(id: UUID!): User
+    getUserByEmail(email: String!): User
+    getRoles: [Role!]!
+    getPermissionsByRole(roleId: UUID!): [RoleFieldPermission!]!
+    getAllUsers: [User!]!
+}
+
+type Mutation {
+    registerUser(email: String!, passwordHash: String!, firstName: String, lastName: String): User!
+    login(email: String!, passwordHash: String!): AuthResponse!
+    setFieldPermission(roleId: UUID!, module: String!, fieldName: String!, canRead: Boolean!, canWrite: Boolean!): RoleFieldPermission!
+    updateUserRoles(userId: UUID!, roleIds: [UUID!]!): User!
+    updateUserStatus(userId: UUID!, isActive: Boolean!): User!
+}

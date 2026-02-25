@@ -1,0 +1,7 @@
+com/ngxcrm/search/document/CrmSearchDocument.class
+com/ngxcrm/search/controller/SearchController.class
+com/ngxcrm/search/SearchServiceApplication.class
+com/ngxcrm/search/document/CrmSearchDocument$CrmSearchDocumentBuilder.class
+com/ngxcrm/search/repository/CrmSearchRepository.class
+com/ngxcrm/search/consumer/SearchIndexerConsumer.class
+com/ngxcrm/search/config/JacksonConfig.class

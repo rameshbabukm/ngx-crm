@@ -1,0 +1,102 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--background-color);
+    padding: 20px;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    background: var(--surface-color);
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: var(--shadow-md);
+    text-align: center;
+}
+
+.login-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+}
+
+.login-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9em;
+    margin-bottom: 24px;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.login-button {
+    margin-top: 8px;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05em;
+}
+
+.login-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 0.9em;
+    border: 1px solid #fca5a5;
+}
+
+.demo-accounts {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.demo-accounts p {
+    font-size: 0.85em;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.demo-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.demo-btn {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 6px 12px;
+    font-size: 0.85em;
+    border-radius: 16px;
+    box-shadow: none;
+}
+
+.demo-btn:hover {
+    background-color: rgba(2, 136, 209, 0.08);
+    box-shadow: none;
+    transform: none;
+}

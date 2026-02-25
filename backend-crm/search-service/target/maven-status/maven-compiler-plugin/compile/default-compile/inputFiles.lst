@@ -1,0 +1,6 @@
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/controller/SearchController.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/document/CrmSearchDocument.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/repository/CrmSearchRepository.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/config/JacksonConfig.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/SearchServiceApplication.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/search-service/src/main/java/com/ngxcrm/search/consumer/SearchIndexerConsumer.java

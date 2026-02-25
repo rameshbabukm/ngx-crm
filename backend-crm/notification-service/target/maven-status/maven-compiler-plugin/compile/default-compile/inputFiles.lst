@@ -1,0 +1,6 @@
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/App.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/notification/NotificationServiceApplication.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/notification/config/JacksonConfig.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/notification/consumer/NotificationConsumerService.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/notification/model/OutboxEventPayload.java
+/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/main/java/com/ngxcrm/notification/service/EmailNotificationService.java

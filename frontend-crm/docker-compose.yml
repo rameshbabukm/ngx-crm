@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  frontend-container:
+    build:
+      context: ./packages/container
+      dockerfile: Dockerfile
+    container_name: crm-frontend-container
+    ports:
+      - "3000:80"
+    networks:
+      - frontend-network
+
+  frontend-c360:
+    build:
+      context: ./packages/c360
+      dockerfile: Dockerfile
+    container_name: crm-frontend-c360
+    ports:
+      - "5001:80"
+    networks:
+      - frontend-network
+
+  frontend-sales:
+    build:
+      context: ./packages/sales
+      dockerfile: Dockerfile
+    container_name: crm-frontend-sales
+    ports:
+      - "5002:80"
+    networks:
+      - frontend-network
+
+  frontend-service:
+    build:
+      context: ./packages/service
+      dockerfile: Dockerfile
+    container_name: crm-frontend-service
+    ports:
+      - "5003:80"
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    name: crm-network

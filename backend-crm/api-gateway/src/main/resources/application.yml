@@ -1,0 +1,88 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      routes:
+        - id: test-route
+          uri: http://c360-service:8087
+          predicates:
+            - Path=/test
+          filters:
+            - SetPath=/graphql
+
+        - id: c360-service
+          uri: http://c360-service:8087
+          predicates:
+            - Path=/c360/**
+          filters:
+            - RewritePath=/c360/(?<segment>.*), /$\{segment}
+
+        - id: c360-graphql
+          uri: http://c360-service:8087
+          predicates:
+            - Path=/graphql/c360
+          filters:
+            - RewritePath=/graphql/c360(?<segment>.*), /graphql$\{segment}
+
+        - id: sales-service
+          uri: http://sales-service:8081
+          predicates:
+            - Path=/sales/**
+          filters:
+            - RewritePath=/sales/(?<segment>.*), /$\{segment}
+
+        - id: service-core
+          uri: http://service-core:8084
+          predicates:
+            - Path=/service/**
+          filters:
+            - RewritePath=/service/(?<segment>.*), /$\{segment}
+
+        - id: sales-graphql
+          uri: http://sales-service:8081
+          predicates:
+            - Path=/graphql/sales
+          filters:
+            - RewritePath=/graphql/sales(?<segment>.*), /graphql$\{segment}
+
+        - id: service-graphql
+          uri: http://service-core:8084
+          predicates:
+            - Path=/graphql/service
+          filters:
+            - RewritePath=/graphql/service(?<segment>.*), /graphql$\{segment}
+
+        - id: identity-service
+          uri: http://identity-service:8085
+          predicates:
+            - Path=/identity/**
+          filters:
+            - RewritePath=/identity/(?<segment>.*), /$\{segment}
+
+        - id: identity-graphql
+          uri: http://identity-service:8085
+          predicates:
+            - Path=/graphql/identity
+          filters:
+            - RewritePath=/graphql/identity(?<segment>.*), /graphql$\{segment}
+
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    reactor.netty.http.client: TRACE

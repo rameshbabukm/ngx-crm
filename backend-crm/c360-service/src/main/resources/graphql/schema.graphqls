@@ -1,0 +1,34 @@
+type Query {
+    accounts: [Account!]!
+    account(id: ID!): Account
+    contacts: [Contact!]!
+    contact(id: ID!): Contact
+    contactsByAccount(accountId: ID!): [Contact!]!
+}
+
+type Mutation {
+    createAccount(name: String!, industry: String, website: String, tier: String): Account!
+    updateAccount(id: ID!, name: String, industry: String, website: String, tier: String): Account!
+
+    createContact(accountId: ID, firstName: String!, lastName: String!, email: String!, phone: String, jobTitle: String): Contact!
+    updateContact(id: ID!, firstName: String, lastName: String, phone: String, jobTitle: String): Contact!
+}
+
+type Account {
+    id: ID!
+    name: String!
+    industry: String
+    website: String
+    tier: String
+    createdAt: String
+    contacts: [Contact!]
+}
+
+type Contact {
+    id: ID!
+    firstName: String!
+    lastName: String!
+    email: String!
+    phone: String
+    jobTitle: String
+}

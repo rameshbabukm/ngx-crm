@@ -1,0 +1,221 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< com.ngxcrm:notification-service >-------------------
+[INFO] Building notification-service 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:4.0.3:run (default-cli) > test-compile @ notification-service >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ notification-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ notification-service ---
+[INFO] skip non existing resourceDirectory /Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ notification-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:4.0.3:run (default-cli) < test-compile @ notification-service <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:4.0.3:run (default-cli) @ notification-service ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.0.3)
+
+2026-02-21T10:02:23.382+05:30  INFO 57844 --- [notification-service] [           main] c.n.n.NotificationServiceApplication     : Starting NotificationServiceApplication using Java 17.0.12 with PID 57844 (/Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service/target/classes started by rameshbabukm in /Users/rameshbabukm/Documents/Projects/ngx-crm/backend/notification-service)
+2026-02-21T10:02:23.383+05:30  INFO 57844 --- [notification-service] [           main] c.n.n.NotificationServiceApplication     : No active profile set, falling back to 1 default profile: "default"
+2026-02-21T10:02:23.756+05:30  INFO 57844 --- [notification-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8088 (http)
+2026-02-21T10:02:23.760+05:30  INFO 57844 --- [notification-service] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-21T10:02:23.760+05:30  INFO 57844 --- [notification-service] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.18]
+2026-02-21T10:02:23.778+05:30  INFO 57844 --- [notification-service] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 373 ms
+2026-02-21T10:02:24.060+05:30  INFO 57844 --- [notification-service] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 1 endpoint beneath base path '/actuator'
+2026-02-21T10:02:24.098+05:30  INFO 57844 --- [notification-service] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8088 (http) with context path '/'
+2026-02-21T10:02:24.116+05:30  INFO 57844 --- [notification-service] [           main] o.a.kafka.common.config.AbstractConfig   : ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [localhost:29092]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-notification-service-group-1
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	enable.metrics.push = true
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = notification-service-group
+	group.instance.id = null
+	group.protocol = classic
+	group.remote.assignor = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metadata.recovery.rebootstrap.trigger.ms = 300000
+	metadata.recovery.strategy = rebootstrap
+	metric.reporters = [org.apache.kafka.common.metrics.JmxReporter]
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.max.ms = 1000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.connect.timeout.ms = null
+	sasl.login.read.timeout.ms = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.login.retry.backoff.max.ms = 10000
+	sasl.login.retry.backoff.ms = 100
+	sasl.mechanism = GSSAPI
+	sasl.oauthbearer.assertion.algorithm = RS256
+	sasl.oauthbearer.assertion.claim.aud = null
+	sasl.oauthbearer.assertion.claim.exp.seconds = 300
+	sasl.oauthbearer.assertion.claim.iss = null
+	sasl.oauthbearer.assertion.claim.jti.include = false
+	sasl.oauthbearer.assertion.claim.nbf.seconds = 60
+	sasl.oauthbearer.assertion.claim.sub = null
+	sasl.oauthbearer.assertion.file = null
+	sasl.oauthbearer.assertion.private.key.file = null
+	sasl.oauthbearer.assertion.private.key.passphrase = null
+	sasl.oauthbearer.assertion.template.file = null
+	sasl.oauthbearer.client.credentials.client.id = null
+	sasl.oauthbearer.client.credentials.client.secret = null
+	sasl.oauthbearer.clock.skew.seconds = 30
+	sasl.oauthbearer.expected.audience = null
+	sasl.oauthbearer.expected.issuer = null
+	sasl.oauthbearer.header.urlencode = false
+	sasl.oauthbearer.jwks.endpoint.refresh.ms = 3600000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.max.ms = 10000
+	sasl.oauthbearer.jwks.endpoint.retry.backoff.ms = 100
+	sasl.oauthbearer.jwks.endpoint.url = null
+	sasl.oauthbearer.jwt.retriever.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtRetriever
+	sasl.oauthbearer.jwt.validator.class = class org.apache.kafka.common.security.oauthbearer.DefaultJwtValidator
+	sasl.oauthbearer.scope = null
+	sasl.oauthbearer.scope.claim.name = scope
+	sasl.oauthbearer.sub.claim.name = sub
+	sasl.oauthbearer.token.endpoint.url = null
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	share.acknowledgement.mode = implicit
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+
+2026-02-21T10:02:24.130+05:30  INFO 57844 --- [notification-service] [           main] o.a.k.c.t.i.KafkaMetricsCollector        : initializing Kafka metrics collector
+2026-02-21T10:02:24.171+05:30  INFO 57844 --- [notification-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka version: 4.1.1
+2026-02-21T10:02:24.171+05:30  INFO 57844 --- [notification-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka commitId: be816b82d25370ce
+2026-02-21T10:02:24.172+05:30  INFO 57844 --- [notification-service] [           main] o.a.kafka.common.utils.AppInfoParser     : Kafka startTimeMs: 1771648344171
+2026-02-21T10:02:24.175+05:30  INFO 57844 --- [notification-service] [           main] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Subscribed to topic(s): sales_server.public.outbox_events
+2026-02-21T10:02:24.182+05:30  INFO 57844 --- [notification-service] [           main] c.n.n.NotificationServiceApplication     : Started NotificationServiceApplication in 0.961 seconds (process running for 1.113)
+2026-02-21T10:02:24.311+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] org.apache.kafka.clients.Metadata        : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Cluster ID: xiuj4Z5ySQCCX9DyRQdIaw
+2026-02-21T10:02:24.312+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Discovered group coordinator kafka:29092 (id: 2147483646 rack: null isFenced: false)
+2026-02-21T10:02:29.318+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] (Re-)joining group
+2026-02-21T10:02:29.341+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Request joining group due to: need to re-join with the given member-id: consumer-notification-service-group-1-7e65d38f-3698-4c0b-aef8-b604919a4cf7
+2026-02-21T10:02:29.342+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] (Re-)joining group
+2026-02-21T10:02:32.351+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Successfully joined group with generation Generation{generationId=1, memberId='consumer-notification-service-group-1-7e65d38f-3698-4c0b-aef8-b604919a4cf7', protocol='range'}
+2026-02-21T10:02:32.359+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Finished assignment for group at generation 1: {consumer-notification-service-group-1-7e65d38f-3698-4c0b-aef8-b604919a4cf7=Assignment(partitions=[sales_server.public.outbox_events-0])}
+2026-02-21T10:02:32.369+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Successfully synced group in generation Generation{generationId=1, memberId='consumer-notification-service-group-1-7e65d38f-3698-4c0b-aef8-b604919a4cf7', protocol='range'}
+2026-02-21T10:02:32.369+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Notifying assignor about the new Assignment(partitions=[sales_server.public.outbox_events-0])
+2026-02-21T10:02:32.371+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Adding newly assigned partitions: [sales_server.public.outbox_events-0]
+2026-02-21T10:02:32.380+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Found no committed offset for partition sales_server.public.outbox_events-0
+2026-02-21T10:02:32.388+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.SubscriptionState    : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Resetting offset for partition sales_server.public.outbox_events-0 to position FetchPosition{offset=0, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[kafka:29092 (id: 1 rack: null isFenced: false)], epoch=0}}.
+2026-02-21T10:02:32.389+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service-group: partitions assigned: [sales_server.public.outbox_events-0]
+2026-02-21T10:02:32.416+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] Event received: LeadCreated for Lead (id: 9ef40a70-c8f6-401c-b723-3bd36d170b81)
+2026-02-21T10:02:32.416+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] New Lead created: E2E Test Lead (e2e@test.com)
+2026-02-21T10:02:32.416+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.service.EmailNotificationService   : [EMAIL SIMULATED] To: sales-team@ngxcrm.com | Subject: New Lead: E2E Test Lead | Body: A new lead has been created:
+Name: E2E Test Lead
+Email: e2e@test.com
+Lead ID: 9ef40a70-c8f6-401c-b723-3bd36d170b81
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] Event received: LeadCreated for Lead (id: 34fb87ec-3f3b-49ac-abef-bc4389b7eb55)
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] New Lead created: Kafka E2E Verified (kafka@e2e.com)
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.service.EmailNotificationService   : [EMAIL SIMULATED] To: sales-team@ngxcrm.com | Subject: New Lead: Kafka E2E Verified | Body: A new lead has been created:
+Name: Kafka E2E Verified
+Email: kafka@e2e.com
+Lead ID: 34fb87ec-3f3b-49ac-abef-bc4389b7eb55
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] Event received: LeadCreated for Lead (id: 2c7fa220-2eeb-4613-bffd-a56d4cb48ac0)
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] New Lead created: Final E2E (final@e2e.com)
+2026-02-21T10:02:32.417+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.service.EmailNotificationService   : [EMAIL SIMULATED] To: sales-team@ngxcrm.com | Subject: New Lead: Final E2E | Body: A new lead has been created:
+Name: Final E2E
+Email: final@e2e.com
+Lead ID: 2c7fa220-2eeb-4613-bffd-a56d4cb48ac0
+2026-02-21T10:03:09.839+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] Event received: LeadCreated for Lead (id: c0e6835b-a089-458a-99bf-a5660a1149a2)
+2026-02-21T10:03:09.840+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.c.NotificationConsumerService      : [NOTIFICATION] New Lead created: Notif Test Lead (notify@test.com)
+2026-02-21T10:03:09.840+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] c.n.n.service.EmailNotificationService   : [EMAIL SIMULATED] To: sales-team@ngxcrm.com | Subject: New Lead: Notif Test Lead | Body: A new lead has been created:
+Name: Notif Test Lead
+Email: notify@test.com
+Lead ID: c0e6835b-a089-458a-99bf-a5660a1149a2
+2026-02-21T10:33:16.764+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] k.c.c.i.ConsumerRebalanceListenerInvoker : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Revoke previously assigned partitions [sales_server.public.outbox_events-0]
+2026-02-21T10:33:16.767+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service-group: partitions revoked: [sales_server.public.outbox_events-0]
+2026-02-21T10:33:16.769+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Member consumer-notification-service-group-1-7e65d38f-3698-4c0b-aef8-b604919a4cf7 sending LeaveGroup request to coordinator kafka:29092 (id: 2147483646 rack: null isFenced: false) due to the consumer unsubscribed from all topics
+2026-02-21T10:33:16.772+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-02-21T10:33:16.772+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Request joining group due to: consumer pro-actively leaving the group
+2026-02-21T10:33:16.772+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer         : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Unsubscribed all topics or patterns and assigned partitions
+2026-02-21T10:33:16.778+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Resetting generation and member id due to: consumer pro-actively leaving the group
+2026-02-21T10:33:16.778+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.k.c.c.internals.ConsumerCoordinator  : [Consumer clientId=consumer-notification-service-group-1, groupId=notification-service-group] Request joining group due to: consumer pro-actively leaving the group
+2026-02-21T10:33:17.219+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics scheduler closed
+2026-02-21T10:33:17.219+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.metrics.JmxReporter
+2026-02-21T10:33:17.219+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
+2026-02-21T10:33:17.219+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.apache.kafka.common.metrics.Metrics    : Metrics reporters closed
+2026-02-21T10:33:17.224+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.a.kafka.common.utils.AppInfoParser     : App info kafka.consumer for consumer-notification-service-group-1 unregistered
+2026-02-21T10:33:17.225+05:30  INFO 57844 --- [notification-service] [ntainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer    : notification-service-group: Consumer stopped
+2026-02-21T10:33:17.226+05:30  INFO 57844 --- [notification-service] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-21T10:33:17.232+05:30  INFO 57844 --- [notification-service] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete

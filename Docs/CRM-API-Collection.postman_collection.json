@@ -1,0 +1,1007 @@
+{
+  "info": {
+    "name": "NGX-CRM API Collection",
+    "description": "Comprehensive API testing collection for the CRM microservices architecture",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Identity Service",
+      "description": "Authentication and User Management APIs",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  registerUser(\n    email: \"user@example.com\"\n    passwordHash: \"password123\"\n    firstName: \"John\"\n    lastName: \"Doe\"\n  ) {\n    id\n    email\n    firstName\n    lastName\n    active\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/identity",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "identity"
+              ]
+            },
+            "description": "Register a new user in the system"
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  login(\n    email: \"user@example.com\"\n    passwordHash: \"password123\"\n  ) {\n    token\n    user {\n      id\n      email\n      firstName\n      lastName\n    }\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/identity",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "identity"
+              ]
+            },
+            "description": "Authenticate user and get JWT token"
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query {\n  getUserById(id: \"{{USER_ID}}\") {\n    id\n    email\n    firstName\n    lastName\n    active\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/identity",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "identity"
+              ]
+            },
+            "description": "Get user details by ID"
+          }
+        },
+        {
+          "name": "Get User by Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query {\n  getUserByEmail(email: \"user@example.com\") {\n    id\n    email\n    firstName\n    lastName\n    active\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/identity",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "identity"
+              ]
+            },
+            "description": "Get user details by email"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Customer 360 Service",
+      "description": "Customer Account and Contact Management APIs",
+      "item": [
+        {
+          "name": "Accounts",
+          "item": [
+            {
+              "name": "Get All Accounts",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  accounts {\n    id\n    name\n    industry\n    website\n    tier\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Get all customer accounts"
+              }
+            },
+            {
+              "name": "Get Account by ID",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  account(id: \"{{ACCOUNT_ID}}\") {\n    id\n    name\n    industry\n    website\n    tier\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Get account details by ID"
+              }
+            },
+            {
+              "name": "Create Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  createAccount(\n    name: \"Acme Corporation\"\n    industry: \"Technology\"\n    website: \"https://acme.com\"\n    tier: \"Enterprise\"\n  ) {\n    id\n    name\n    industry\n    website\n    tier\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Create a new customer account"
+              }
+            },
+            {
+              "name": "Update Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  updateAccount(\n    id: \"{{ACCOUNT_ID}}\"\n    name: \"Updated Acme Corp\"\n    industry: \"Software\"\n    website: \"https://newacme.com\"\n    tier: \"Premium\"\n  ) {\n    id\n    name\n    industry\n    website\n    tier\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Update account details"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Contacts",
+          "item": [
+            {
+              "name": "Get All Contacts",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  contacts {\n    id\n    firstName\n    lastName\n    email\n    phone\n    jobTitle\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Get all contacts"
+              }
+            },
+            {
+              "name": "Get Contact by ID",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  contact(id: \"{{CONTACT_ID}}\") {\n    id\n    firstName\n    lastName\n    email\n    phone\n    jobTitle\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Get contact details by ID"
+              }
+            },
+            {
+              "name": "Get Contacts by Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  contactsByAccount(accountId: \"{{ACCOUNT_ID}}\") {\n    id\n    firstName\n    lastName\n    email\n    phone\n    jobTitle\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Get all contacts for a specific account"
+              }
+            },
+            {
+              "name": "Create Contact",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  createContact(\n    accountId: \"{{ACCOUNT_ID}}\"\n    firstName: \"Jane\"\n    lastName: \"Smith\"\n    email: \"jane.smith@acme.com\"\n    phone: \"+1-555-0123\"\n    jobTitle: \"Sales Manager\"\n  ) {\n    id\n    firstName\n    lastName\n    email\n    phone\n    jobTitle\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Create a new contact"
+              }
+            },
+            {
+              "name": "Update Contact",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  updateContact(\n    id: \"{{CONTACT_ID}}\"\n    firstName: \"Jane\"\n    lastName: \"Johnson\"\n    phone: \"+1-555-9876\"\n    jobTitle: \"Senior Sales Manager\"\n  ) {\n    id\n    firstName\n    lastName\n    email\n    phone\n    jobTitle\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/c360",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "c360"
+                  ]
+                },
+                "description": "Update contact details"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sales Service",
+      "description": "Sales Management APIs (Leads and Opportunities)",
+      "item": [
+        {
+          "name": "Leads",
+          "item": [
+            {
+              "name": "Get All Leads",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  getLeads {\n    id\n    name\n    email\n    company\n    status\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Get all leads"
+              }
+            },
+            {
+              "name": "Get Lead by ID",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  getLead(id: \"{{LEAD_ID}}\") {\n    id\n    name\n    email\n    company\n    status\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Get lead details by ID"
+              }
+            },
+            {
+              "name": "Create Lead",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  createLead(\n    name: \"John Prospect\"\n    email: \"john.prospect@company.com\"\n    company: \"TechCorp Inc\"\n  ) {\n    id\n    name\n    email\n    company\n    status\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Create a new lead"
+              }
+            },
+            {
+              "name": "Update Lead Status",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  updateLeadStatus(\n    id: \"{{LEAD_ID}}\"\n    status: \"Qualified\"\n  ) {\n    id\n    name\n    email\n    company\n    status\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Update lead status (e.g., New, Qualified, Contacted)"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Opportunities",
+          "item": [
+            {
+              "name": "Get All Opportunities",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  getOpportunities {\n    id\n    accountId\n    name\n    amount\n    stage\n    probability\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Get all opportunities"
+              }
+            },
+            {
+              "name": "Get Opportunity by ID",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "query {\n  getOpportunity(id: \"{{OPPORTUNITY_ID}}\") {\n    id\n    accountId\n    name\n    amount\n    stage\n    probability\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Get opportunity details by ID"
+              }
+            },
+            {
+              "name": "Create Opportunity",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  createOpportunity(\n    accountId: \"{{ACCOUNT_ID}}\"\n    name: \"Enterprise Software Deal\"\n    amount: 50000.0\n    stage: \"Proposal\"\n    probability: 0.75\n  ) {\n    id\n    accountId\n    name\n    amount\n    stage\n    probability\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Create a new opportunity"
+              }
+            },
+            {
+              "name": "Update Opportunity Stage",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{JWT_TOKEN}}"
+                  }
+                ],
+                "body": {
+                  "mode": "graphql",
+                  "graphql": {
+                    "query": "mutation {\n  updateOpportunityStage(\n    id: \"{{OPPORTUNITY_ID}}\"\n    stage: \"Closed Won\"\n  ) {\n    id\n    accountId\n    name\n    amount\n    stage\n    probability\n  }\n}"
+                  }
+                },
+                "url": {
+                  "raw": "{{GATEWAY_URL}}/graphql/sales",
+                  "host": [
+                    "{{GATEWAY_URL}}"
+                  ],
+                  "path": [
+                    "graphql",
+                    "sales"
+                  ]
+                },
+                "description": "Update opportunity stage (e.g., Lead, Qualification, Proposal, Closed Won)"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Service Core",
+      "description": "Customer Service and Case Management APIs",
+      "item": [
+        {
+          "name": "Get All Cases",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query {\n  getCases {\n    id\n    caseNumber\n    subject\n    description\n    priority\n    status\n    contactId\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/service",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "service"
+              ]
+            },
+            "description": "Get all customer service cases"
+          }
+        },
+        {
+          "name": "Get Case by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "query {\n  getCase(id: \"{{CASE_ID}}\") {\n    id\n    caseNumber\n    subject\n    description\n    priority\n    status\n    contactId\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/service",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "service"
+              ]
+            },
+            "description": "Get case details by ID"
+          }
+        },
+        {
+          "name": "Create Case",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  createCase(\n    subject: \"Customer Portal Login Issue\"\n    description: \"User unable to login to customer portal. Getting 403 error.\"\n    priority: \"High\"\n    contactId: \"{{CONTACT_ID}}\"\n  ) {\n    id\n    caseNumber\n    subject\n    description\n    priority\n    status\n    contactId\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/service",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "service"
+              ]
+            },
+            "description": "Create a new customer service case"
+          }
+        },
+        {
+          "name": "Update Case Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "body": {
+              "mode": "graphql",
+              "graphql": {
+                "query": "mutation {\n  updateCaseStatus(\n    id: \"{{CASE_ID}}\"\n    status: \"In Progress\"\n  ) {\n    id\n    caseNumber\n    subject\n    description\n    priority\n    status\n    contactId\n  }\n}"
+              }
+            },
+            "url": {
+              "raw": "{{GATEWAY_URL}}/graphql/service",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "graphql",
+                "service"
+              ]
+            },
+            "description": "Update case status (e.g., New, In Progress, Resolved, Closed)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Search Service",
+      "description": "Global Search and Indexing APIs",
+      "item": [
+        {
+          "name": "Global Search",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{GATEWAY_URL}}/api/search?q=acme",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "api",
+                "search"
+              ],
+              "query": [
+                {
+                  "key": "q",
+                  "value": "acme"
+                }
+              ]
+            },
+            "description": "Search globally by name across all entity types (Leads, Opportunities, Accounts, Contacts)"
+          }
+        },
+        {
+          "name": "Search by Type",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{GATEWAY_URL}}/api/search/type?type=Lead",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "api",
+                "search",
+                "type"
+              ],
+              "query": [
+                {
+                  "key": "type",
+                  "value": "Lead"
+                }
+              ]
+            },
+            "description": "Filter search results by entity type (Lead, Opportunity, Account, Contact)"
+          }
+        },
+        {
+          "name": "Search by Email",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{JWT_TOKEN}}"
+              }
+            ],
+            "url": {
+              "raw": "{{GATEWAY_URL}}/api/search/email?email=john@example.com",
+              "host": [
+                "{{GATEWAY_URL}}"
+              ],
+              "path": [
+                "api",
+                "search",
+                "email"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "john@example.com"
+                }
+              ]
+            },
+            "description": "Search entities by email address"
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "GATEWAY_URL",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "JWT_TOKEN",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "USER_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "ACCOUNT_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "CONTACT_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "LEAD_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "OPPORTUNITY_ID",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "CASE_ID",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+CREATE DATABASE identity_db;
+CREATE DATABASE c360_db;
+CREATE DATABASE sales_db;
+CREATE DATABASE service_db;

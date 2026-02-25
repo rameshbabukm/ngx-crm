@@ -1,0 +1,38 @@
+type Lead {
+    id: ID!
+    name: String!
+    email: String!
+    company: String!
+    status: String!
+    score: Int
+    ownerId: String
+    createdAt: String!
+}
+
+type Opportunity {
+    id: ID!
+    accountId: String
+    name: String!
+    amount: Float
+    stage: String!
+    probability: Float
+    ownerId: String
+    createdAt: String!
+}
+
+type Query {
+    getLead(id: ID!): Lead
+    getLeads: [Lead]!
+    
+    getOpportunity(id: ID!): Opportunity
+    getOpportunities: [Opportunity]!
+}
+
+type Mutation {
+    createLead(name: String!, email: String!, company: String!): Lead!
+    updateLeadStatus(id: ID!, status: String!): Lead!
+    updateLead(id: ID!, name: String, email: String, company: String): Lead!
+    
+    createOpportunity(accountId: String, name: String!, amount: Float, stage: String!, probability: Float): Opportunity!
+    updateOpportunityStage(id: ID!, stage: String!): Opportunity!
+}

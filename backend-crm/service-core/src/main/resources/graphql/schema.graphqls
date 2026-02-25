@@ -1,0 +1,23 @@
+type Case {
+    id: ID!
+    caseNumber: String!
+    subject: String!
+    description: String
+    priority: String!
+    status: String!
+    contactId: String
+    ownerId: String
+    slaBreachAt: String
+    createdAt: String!
+}
+
+type Query {
+    getCase(id: ID!): Case
+    getCases: [Case]!
+}
+
+type Mutation {
+    createCase(subject: String!, description: String, priority: String, contactId: String): Case!
+    updateCaseStatus(id: ID!, status: String!): Case!
+    updateCase(id: ID!, subject: String, description: String, priority: String): Case!
+}

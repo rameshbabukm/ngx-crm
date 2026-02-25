@@ -1,0 +1,6 @@
+com/ngxcrm/notification/config/JacksonConfig.class
+com/ngxcrm/notification/model/OutboxEventPayload.class
+com/ngxcrm/notification/service/EmailNotificationService.class
+com/ngxcrm/notification/NotificationServiceApplication.class
+com/ngxcrm/notification/consumer/NotificationConsumerService.class
+com/ngxcrm/App.class

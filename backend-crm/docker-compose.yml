@@ -1,0 +1,227 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: crm-postgres
+    environment:
+      POSTGRES_USER: crm_admin
+      POSTGRES_PASSWORD: crm_password
+      POSTGRES_DB: crm_db
+    ports:
+      - "5432:5432"
+    command: [ "postgres", "-c", "wal_level=logical" ]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init-dbs.sql:/docker-entrypoint-initdb.d/init-dbs.sql
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: crm-zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      - crm-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: crm-kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,EXTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    networks:
+      - crm-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: crm-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  debezium:
+    image: debezium/connect:2.4
+    container_name: crm-debezium
+    ports:
+      - "8083:8083"
+    environment:
+      BOOTSTRAP_SERVERS: kafka:9092
+      GROUP_ID: 1
+      CONFIG_STORAGE_TOPIC: my_connect_configs
+      OFFSET_STORAGE_TOPIC: my_connect_offsets
+      STATUS_STORAGE_TOPIC: my_connect_statuses
+    depends_on:
+      - kafka
+      - postgres
+    networks:
+      - crm-network
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: crm-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - crm-network
+
+  # Microservices
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: crm-api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_APPLICATION_NAME: api-gateway
+    depends_on:
+      - identity-service
+      - c360-service
+      - sales-service
+      - service-core
+      - search-service
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  identity-service:
+    build:
+      context: ./identity-service
+      dockerfile: Dockerfile
+    container_name: crm-identity-service
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_APPLICATION_NAME: identity-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/identity_db
+      SPRING_DATASOURCE_USERNAME: crm_admin
+      SPRING_DATASOURCE_PASSWORD: crm_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_GRAPHQL_GRAPHIQL_ENABLED: "true"
+      SERVER_PORT: 8085
+    depends_on:
+      - postgres
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  c360-service:
+    build:
+      context: ./c360-service
+      dockerfile: Dockerfile
+    container_name: crm-c360-service
+    ports:
+      - "8087:8087"
+    environment:
+      SPRING_APPLICATION_NAME: c360-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/c360_db
+      SPRING_DATASOURCE_USERNAME: crm_admin
+      SPRING_DATASOURCE_PASSWORD: crm_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_GRAPHQL_GRAPHIQL_ENABLED: "true"
+      SERVER_PORT: 8087
+    depends_on:
+      - postgres
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  sales-service:
+    build:
+      context: ./sales-service
+      dockerfile: Dockerfile
+    container_name: crm-sales-service
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_APPLICATION_NAME: sales-service
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/sales_db
+      SPRING_DATASOURCE_USERNAME: crm_admin
+      SPRING_DATASOURCE_PASSWORD: crm_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_GRAPHQL_GRAPHIQL_ENABLED: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SERVER_PORT: 8081
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  service-core:
+    build:
+      context: ./service-core
+      dockerfile: Dockerfile
+    container_name: crm-service-core
+    ports:
+      - "8084:8084"
+    environment:
+      SPRING_APPLICATION_NAME: service-core
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/service_db
+      SPRING_DATASOURCE_USERNAME: crm_admin
+      SPRING_DATASOURCE_PASSWORD: crm_password
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_GRAPHQL_GRAPHIQL_ENABLED: "true"
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SERVER_PORT: 8084
+    depends_on:
+      - postgres
+      - kafka
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+  search-service:
+    build:
+      context: ./search-service
+      dockerfile: Dockerfile
+    container_name: crm-search-service
+    ports:
+      - "8086:8086"
+    environment:
+      SPRING_APPLICATION_NAME: search-service
+      SPRING_ELASTICSEARCH_URIS: http://elasticsearch:9200
+      SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      SERVER_PORT: 8086
+    depends_on:
+      - elasticsearch
+      - kafka
+    networks:
+      - crm-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  elasticsearch_data:
+
+
+networks:
+  crm-network:
+    driver: bridge
